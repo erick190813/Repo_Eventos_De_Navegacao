@@ -64,12 +64,53 @@ Estes eventos não ocorrem dentro da página, mas sim na classe **Application**.
     * **Atualização da Pai:** Avisar a aplicação que o fluxo modal terminou, para que a tela principal possa atualizar seus dados (ex: a modal editou um perfil, a tela principal agora precisa recarregar o nome do usuário).
 
 ---
+##  4 .Fundamentos das Páginas no .NET MAUI
 
-## 4. Análise Detalhada dos Ciclos de Vida da Página (Page Lifecycle)
+No .NET MAUI, cada tela da aplicação é representada por uma *página*. Compreender o papel dessas páginas é essencial para organizar o fluxo de navegação e estruturar corretamente a interface do usuário. As páginas definem como o usuário interage com o aplicativo e como transita entre diferentes funcionalidades.
+
+Dentre os tipos disponíveis, duas páginas se destacam pela relevância no ciclo de navegação:
+
+---
+
+### **MainPage**
+
+A **MainPage** é a página inicial da aplicação e representa sua estrutura base.  
+Ela é carregada automaticamente no início do app e funciona como ponto de entrada para as demais telas.
+
+Normalmente, a MainPage contém:
+
+- Botões  
+- Menus  
+- Listas  
+- Links para outras partes do sistema  
+
+---
+
+### **ModalPage**
+
+A **ModalPage** é utilizada para situações que exigem atenção total do usuário.  
+Trata-se de uma página exibida sobre o contexto atual, interrompendo temporariamente a navegação normal.
+
+Características da ModalPage:
+
+- Abre por cima da página atual  
+- O usuário só pode retornar ao fluxo principal após fechá-la  
+- Ideal para:
+  - Confirmações  
+  - Avisos importantes  
+  - Formulários rápidos  
+  - Pequenas interações independentes  
+
+---
+
+Compreender como esses tipos de páginas funcionam e como se relacionam com a pilha de navegação ajuda a construir aplicativos mais organizados, consistentes e alinhados às boas práticas do .NET MAUI.
+
+
+## 4.1 Análise Detalhada dos Ciclos de Vida da Página (Page Lifecycle)
 
 Diferente dos eventos modais (que são globais), estes eventos acontecem **dentro** de cada página individualmente. Eles comunicam à página o seu estado de visibilidade.
 
-### 4.1. PageAppearing (OnAppearing)
+### 4.2. PageAppearing (OnAppearing)
 
 * **Definição:** Sinaliza que a página está se tornando visível.
 * **Nuance Importante:** Não significa necessariamente que a página foi "criada" agora. Se você navegar para a Página B e depois voltar para a Página A, o construtor da Página A *não* roda novamente, mas o `OnAppearing` roda.
